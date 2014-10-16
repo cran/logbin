@@ -1,0 +1,6 @@
+﻿**  denotes quite substantial/important changes
+*** denotes really big changes 
+
+1.0
+
+* Added na.action argument to logbin() and smooth.logbin()

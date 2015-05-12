@@ -34,29 +34,30 @@ contr.isotonic.rev(n, perm, contrasts = TRUE, sparse = FALSE)
 \details{
 This function is used within \code{\link{logbin.design}}
 for categorical covariates with a specified order under a
-particular parameterization. This is required
+particular parameterisation. This is required
 if a categorical covariate is defined as monotonic.
 
 In the order specified by \code{perm}, the coefficient
 associated with each level is the sum of increments between
-the following levels. That is, the first level is defined
-as d2 + d3 + d4 + ... + dk, the second as d3 + d4 + ... + dk, 
-the third as d4 + ... + dk, and so on.  In fitting the model, 
+the following levels. That is, if there are a total of \eqn{k}
+levels, the first level is defined as \eqn{d_2 + d_3 + d_4 + \cdots + d_k}, 
+the second as \eqn{d_3 + d_4 + \cdots + d_k}, 
+the third as \eqn{d_4 + \cdots + d_k}, and so on.  In fitting the model, 
 these increments are constrained to be non-positive.
 
-Note that these are not 'contrasts' as defined in the
+Note that these are not `contrasts' as defined in the
 theory for linear models, rather this is used to define the
 \code{contrasts} attribute of each variable so that
 \code{\link{model.matrix}} produces the desired design
 matrix.
 }
 \value{
-A matrix with \code{n} rows and \code{k} columns, with
-\code{k=n-1} if \code{contrasts} is \code{TRUE} and
-\code{k=n} if \code{contrasts} is \code{FALSE}.
+A matrix with \code{n} rows and \eqn{k} columns, with
+\eqn{k=n-1} if \code{contrasts} is \code{TRUE} and
+\eqn{k=n} if \code{contrasts} is \code{FALSE}.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \seealso{
 \code{\link{logbin.design}}, which uses

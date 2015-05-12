@@ -8,7 +8,7 @@ Obtains predictions from a fitted \code{\link{logbin}} object.
 }
 \usage{
 \method{predict}{logbin}(object, newdata = NULL, type = c("link", "response", "terms"), 
-	terms = NULL, na.action = na.pass, checkminmax = TRUE, ...)
+        terms = NULL, na.action = na.pass, checkminmax = TRUE, ...)
 }
 \arguments{
   \item{object}{
@@ -20,8 +20,8 @@ Obtains predictions from a fitted \code{\link{logbin}} object.
 }
   \item{type}{
 	the type of prediction required. The default is on the scale of the linear predictors; 
-	the alternative "response" is on the scale of the response variable. 
-	The "terms" option returns a matrix giving the fitted values of each term in the 
+	the alternative \code{"response"} is on the scale of the response variable. 
+	The \code{"terms"} option returns a matrix giving the fitted values of each term in the 
 	model formula on the linear predictor scale.
 
 	The value of this argument can be abbreviated.
@@ -35,7 +35,7 @@ Obtains predictions from a fitted \code{\link{logbin}} object.
 	The default is to predict \code{NA}.
 }
   \item{checkminmax}{
-	logical indicating whether values of continuous covariates in \code{newdata} 
+	logical indicating whether or not values of continuous covariates in \code{newdata} 
 	should be checked to ensure they lie within the covariate space associated with the 
 	fitted model. Otherwise predicted values could lie outside the 
 	parameter space.
@@ -56,7 +56,7 @@ A vector or matrix of predictions. For \code{type = "terms"}, this is a matrix w
 a column per term, and may have an attribute \code{"constant"}.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \note{
 Variables are first looked for in \code{newdata} and then searched for in the usual 

@@ -5,9 +5,9 @@ Construct Design Matrix for logbin Model
 }
 \description{
 \code{logbin.design} constructs the design matrix for a
-\code{\link{logbin}} model, given a particular parameterization.
+\code{\link{logbin}} model, given a particular parameterisation.
 
-This is a workhorse function -- it would not normally be called directly.
+This is a workhorse function --- it would not normally be called directly.
 }
 \usage{
 logbin.design(terms, data, allref, design.ref)
@@ -30,17 +30,17 @@ logbin.design(terms, data, allref, design.ref)
 }
   \item{design.ref}{
 	vector of indices for a particular
-  parameterization in \code{allref}. That is, each element
+  parameterisation in \code{allref}. That is, each element
   corresponds to a term \code{x} in the model, and the
   value of the element indicates which item in the list
   \code{allref[[x]]} is the reference level in this
-  parameterization.
+  parameterisation.
 }
 }
 \details{
 In the CEM algorithm
 employed by \code{\link{logbin}}, we must consider the
-Cartesian product of all possible parameterizations. The
+Cartesian product of all possible parameterisations. The
 list of these for each term in the model is constructed by
 a call to \code{\link{logbin.allref}}, and a list of all
 possible combinations created using
@@ -61,7 +61,7 @@ A strictly non-negative design matrix to be passed to the
 relevant fitting function.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \seealso{
 \code{\link{logbin.allref}}, \code{\link{model.matrix}},

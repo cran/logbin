@@ -29,7 +29,7 @@ a fitted \code{\link{logbin}} model.
 }
 }
 \details{
-Calculates confidence intervals for model parameteres assuming 
+Calculates confidence intervals for model parameters assuming 
 asymptotic normality and using the result from \code{\link{vcov.logbin}(object)}. 
 As such, if the MLE is on the boundary of the parameter space,
 (as per \code{object$boundary}) the normality assumption 
@@ -42,7 +42,7 @@ labelled as (1-level)/2 and 1-(1-level)/2 in \% (by default
 2.5\% and 97.5\%).
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \seealso{
 \code{\link{confint.default}}, \code{\link{vcov.logbin}}

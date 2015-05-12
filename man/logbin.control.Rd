@@ -28,22 +28,22 @@ logbin.control(bound.tol = 1e-06, epsilon = 1e-08, maxit = 10000, trace = 0)
   converged when \eqn{\sqrt{
   \sum (\theta_{old} - \theta_{new})^2} / \sqrt {\sum
   \theta_{old}^2} < \epsilon}, where \eqn{\theta} is the
-  vector of parameter estimates.
+  vector of parameter estimates. See \code{\link{conv.test}}.
 }
   \item{maxit}{
 	integer giving the maximum number of EM
-  algorithm iterations for a given parameterization.
+  algorithm iterations for a given parameterisation.
 }
   \item{trace}{
 	number indicating level of output that
   should be produced. >= 1 gives output for each
-  parameterization, >= 2 gives output at each iteration.
+  parameterisation, >= 2 gives output at each iteration.
 }
 }
 \details{
 This is used similarly to \code{\link{glm.control}}. The
 \code{control} argument of \code{\link{logbin}} is by
-default passed to the \code{\link{control}} argument of
+default passed to the \code{control} argument of
 \code{\link{nplbin}}.
 
 When \code{trace} is greater than zero, calls to
@@ -55,7 +55,7 @@ the precision.
 A list with components named as the arguments.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \seealso{
 \code{\link{glm.control}}, the equivalent function for

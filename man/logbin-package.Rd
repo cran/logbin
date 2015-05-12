@@ -2,22 +2,22 @@
 \alias{logbin-package}
 \docType{package}
 \title{
-Relative Risk Regression Using the Log Binomial Model
+Relative Risk Regression Using the Log-Binomial Model
 }
 \description{
-Methods for fitting log-link GLMs and GAMs for binomial data. The package uses EM-type
+Methods for fitting log-link GLMs and GAMs to binomial data, using EM-type
 algorithms with more stable convergence properties than standard methods.
 }
 \details{
 \tabular{ll}{
 Package: \tab logbin\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2014-10-16\cr
+Version: \tab 1.2\cr
+Date: \tab 2015-05-12\cr
 License: \tab GPL (>= 2)\cr
 }
-This package provides methods to fit generalized linear models (GLMs) and generalized additive
-models (GAMs) with log-link functions to binomial data.
+This package provides methods to fit generalised linear models (GLMs) and generalised additive
+models (GAMs) with log link functions to binomial data.
 It has two primary functions: \code{\link{logbin}} and \code{\link{logbin.smooth}}, 
 together with various supporting functions.
 
@@ -35,23 +35,23 @@ the log-likelihood function, from which can be obtained the global maximum over 
 full parameter space.
 
 The methodology implemented in this package is presented in Marschner and Gillett (2012) 
-and Donoghoe and Marschner (2014).
+and Donoghoe and Marschner (2015).
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 
-Maintainer: Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Maintainer: Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \references{
-Donoghoe, M.W. and I.C. Marschner (2014): "Smooth semi-parametric adjustment of rate 
-differences, risk differences and relative risks," \emph{Proceedings of the 29th 
-International Workshop on Statistical Modelling}, 1, 105--110.
+Donoghoe, M. W. and I. C. Marschner (2015). Flexible regression models for rate 
+differences, risk differences and relative risks. \emph{International Journal of 
+Biostatistics} 11(1): 91--108.
 
-Marschner, I.C. and A.C. Gillett (2012): "Relative risk regression: reliable
-and flexible methods for log-binomial models," \emph{Biostatistics}, 13, 179--192.
+Marschner, I. C. (2014). Combinatorial EM algorithms.
+\emph{Statistics and Computing} 24(6): 921--940.
 
-Marschner, I.C. (2014): "Combinatorial EM algorithms,"
-\emph{Statistics and Computing}, 24, 921--940.
+Marschner, I. C. and A. C. Gillett (2012). Relative risk regression: reliable
+and flexible methods for log-binomial models. \emph{Biostatistics} 13(1): 179--192.
 }
 \keyword{ package }
 \keyword{ regression }

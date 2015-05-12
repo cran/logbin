@@ -10,7 +10,7 @@ for specified values of the other covariates.
 }
 \usage{
 \method{plot}{logbin.smooth}(x, type = c("response", "link"), at = data.frame(), 
-	knotlines = TRUE, nobs = 1000, ...)
+     knotlines = TRUE, nobs = 1000, ...)
 }
 \arguments{
   \item{x}{
@@ -41,15 +41,15 @@ for specified values of the other covariates.
 For each smooth covariate in the model of \code{x}, \code{\link{predict.logbin.smooth}}
 is used to obtain predicted values for the range of that covariate, with the other
 covariates remaining fixed at their values given in \code{at}. Several rows may be provided
-in \code{at}, in which case, one curve is drawn for each, and they are colored using
-\code{rainbow(nrow(at))}. If the model contains a single smooth covariate and no other
+in \code{at}, in which case, one curve is drawn for each, and they are coloured using
+\code{\link{rainbow}(nrow(at))}. If the model contains a single smooth covariate and no other
 covariates, \code{at} may be provided as an empty data frame, \code{data.frame()}.
 }
 \value{
 The function simply generates plots.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \note{
 If this function is too restrictive, it may be easier to use \code{\link{predict.logbin.smooth}}

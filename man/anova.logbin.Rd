@@ -13,9 +13,9 @@ fitted using \code{\link{logbin}}.
 }
 \arguments{
   \item{object, \dots}{
-	objects of class \code{logbin},
+	objects of class \code{"logbin"},
 	typically the result of a call to \code{\link{logbin}},
-	or a list of \code{objects} for the "\code{logbinlist}"
+	or a \code{\link{list}} of \code{objects} for the "\code{logbinlist}"
 	method.
 }
   \item{test}{
@@ -40,8 +40,8 @@ space will be automatically removed from the list (with a
 warning), because asymptotic results to not apply to such
 models.
 
-The table will optionally contain test statistics (and P
-values) comparing the reduction in deviance for the row to
+The table will optionally contain test statistics (and p-values) 
+comparing the reduction in deviance for the row to
 the residuals. Mallows' \emph{Cp} statistic is the residual
 deviance plus twice the estimate of \eqn{\sigma^2} times
 the residual degrees of freedom, which is closely related
@@ -55,7 +55,7 @@ An object of class \code{"anova"} inheriting from class
 \code{"data.frame"}.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \seealso{
 \code{\link{logbin}}, \code{\link{anova.glm}},

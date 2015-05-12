@@ -4,8 +4,8 @@
 Convergence Test Based on L2 Norm
 }
 \description{
-Performs a test of convergence based on the relative change
-in L2 norm of the parameter estimates.
+Performs a test of convergence based on the L2 norm of
+the change in the parameter estimates.
 }
 \usage{
 conv.test(theta1, theta2, epsilon)
@@ -34,10 +34,10 @@ point away from the actual optimum.
 \value{
 A logical; \code{TRUE} if
 \code{sqrt(sum((theta1-theta2)**2))/sqrt(sum(theta1**2)) <
-epsilon}, \code{FALSE} otherwise.
+epsilon}; \code{FALSE} otherwise.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \examples{
 theta.old <- c(-4,-5,-6)

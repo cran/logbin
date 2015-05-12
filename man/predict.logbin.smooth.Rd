@@ -8,7 +8,7 @@ Obtains predictions from a fitted \code{\link{logbin.smooth}} object.
 }
 \usage{
 \method{predict}{logbin.smooth}(object, newdata = NULL, type = c("link", "response", "terms"), 
-	terms = NULL, na.action = na.pass, ...)
+        terms = NULL, na.action = na.pass, ...)
 }
 \arguments{
   \item{object}{
@@ -20,8 +20,8 @@ Obtains predictions from a fitted \code{\link{logbin.smooth}} object.
 }
   \item{type}{
 	the type of prediction required. The default is on the scale of the linear predictors; 
-	the alternative "response" is on the scale of the response variable. 
-	The "terms" option returns a matrix giving the fitted values of each term in the 
+	the alternative \code{"response"} is on the scale of the response variable. 
+	The \code{"terms"} option returns a matrix giving the fitted values of each term in the 
 	model formula on the linear predictor scale.
 
 	The value of this argument can be abbreviated.
@@ -55,7 +55,7 @@ A vector or matrix of predictions. For \code{type = "terms"}, this is a matrix w
 a column per term, and may have an attribute \code{"constant"}.
 }
 \author{
-Mark Donoghoe \email{Mark.Donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 }
 \note{
 Variables are first looked for in \code{newdata} and then searched for in the usual 

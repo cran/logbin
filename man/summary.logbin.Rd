@@ -69,11 +69,14 @@ matrix of the estimated coefficients. \code{NaN} if \code{object$boundary == TRU
 of the estimated coefficients. \code{NaN} if \code{object$boundary == TRUE}.}
 }
 \author{
-Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{markdonoghoe@gmail.com}
 }
 \note{
 If \code{object$boundary == TRUE}, the standard errors of the coefficients
-are not valid, and a matrix of \code{NaN}s is returned by \code{\link{vcov.logbin}}.
+are not valid, and a matrix of \code{NaN}s is returned by \code{\link{vcov.logbin}}. If
+the MLE is not on the boundary but the model contains parameters with monotonicity 
+constraints, the standard errors do not take this into account and should be used
+with caution.
 }
 \seealso{
 \code{\link{logbin}}, \code{\link{summary.glm}}

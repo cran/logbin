@@ -10,7 +10,7 @@ summary.logbin <- function(object, correlation = FALSE, ...) {
     s <- object$prior.weights
     y <- s * object$y
     mu <- object$fitted.values
-	info <- t(x) %*% apply(x,2,"*",s*mu/(1-mu))
+    info <- t(x) %*% apply(x,2,"*",s*mu/(1-mu))
     covmat.unscaled <- try(solve(info), silent = TRUE)
     if(!inherits(covmat.unscaled,"try-error") | all(is.nan(covmat.unscaled))) {
       covmat.scaled <- dispersion * covmat.unscaled
@@ -19,6 +19,8 @@ summary.logbin <- function(object, correlation = FALSE, ...) {
       tvalue <- coef.p/s.err
       pvalue <- 2 * pnorm(-abs(tvalue))
       coef.table <- cbind(coef.p, s.err, tvalue, pvalue)
+      if (!is.null(object$call$mono))
+        warning("model contains monotonicity constraints, asymptotic covariance matrix may not be valid", call. = FALSE)
     } else {
       warning("summary.logbin: observed information matrix is singular, could not calculate covariance matrix", call. = FALSE)
       covmat.unscaled <- matrix(NaN, p, p)
@@ -40,7 +42,7 @@ summary.logbin <- function(object, correlation = FALSE, ...) {
   names(aliased) <- names(coef.p)
   
   keep <- match(c("call", "family", "deviance", "aic", "aic.c", "df.residual",
-                  "null.deviance", "df.null", "iter", "na.action"), names(object), 0L)
+                  "null.deviance", "df.null", "iter", "na.action", "method"), names(object), 0L)
   ans <- c(object[keep], list(deviance.resid = residuals(object,type="deviance"),
                               coefficients = coef.table, aliased = FALSE,
                               dispersion = dispersion, df = c(p, df.r, p),

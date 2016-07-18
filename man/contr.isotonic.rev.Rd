@@ -32,7 +32,7 @@ contr.isotonic.rev(n, perm, contrasts = TRUE, sparse = FALSE)
 }
 }
 \details{
-This function is used within \code{\link{logbin.design}}
+This function is used in creating the design matrix
 for categorical covariates with a specified order under a
 particular parameterisation. This is required
 if a categorical covariate is defined as monotonic.
@@ -57,12 +57,11 @@ A matrix with \code{n} rows and \eqn{k} columns, with
 \eqn{k=n} if \code{contrasts} is \code{FALSE}.
 }
 \author{
-Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{markdonoghoe@gmail.com}
 }
 \seealso{
-\code{\link{logbin.design}}, which uses
-\code{contr.isotonic.rev} to create the design matrix using
-\code{\link{model.matrix}}.
+\code{\link{model.matrix}}, which uses
+\code{contr.isotonic.rev} to create the design matrix.
 
 \code{\link{contr.treatment}}, \code{\link{contrasts}} for
 their usual use in regression models.

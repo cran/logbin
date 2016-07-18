@@ -11,7 +11,9 @@ semi-parametric terms.
 }
 \usage{
 logbin.smooth(formula, mono = NULL, data, subset, na.action, offset, 
-              control = list(...), model = TRUE, model.logbin = FALSE, ...)
+              control = list(...), model = TRUE, model.logbin = FALSE, 
+              method = c("cem", "em"), accelerate = c("em", "squarem", "pem", "qn"),
+              control.accelerate = list(), ...)
 }
 \arguments{
   \item{formula}{
@@ -76,6 +78,26 @@ logbin.smooth(formula, mono = NULL, data, subset, na.action, offset,
 	a logical value indicating whether the fitted \code{logbin}
 	object should be included as a component of the returned value.
 }
+  \item{method}{
+    a character string that determines which EM-type algorithm to use
+  to find the MLE: \code{"cem"} for the combinatorial EM algorithm,
+  which cycles through a sequence of constrained parameter spaces, or
+  \code{"em"} for a single EM algorithm based on an overparameterised
+  model.
+  
+  Unlike \code{\link{logbin}}, methods \code{"glm"} and \code{"ab"} are
+  not available because they do not support the necessary monotonicity constraints.
+}
+  \item{accelerate}{
+    a character string that determines the acceleration
+  algorithm to be used, (partially) matching one of \code{"em"} (no acceleration -- the default), 
+  \code{"squarem"}, \code{"pem"} or \code{"qn"}. See \code{\link[turboEM]{turboem}}
+  for further details. Note that \code{"decme"} is not permitted.
+}
+  \item{control.accelerate}{
+    a list of control parameters for the acceleration algorithm. See \code{\link[turboEM]{turboem}}
+  for details of the parameters that apply to each algorithm. If not specified, the defaults are used.
+}
   \item{\dots}{
 	arguments to be used to form the default
   \code{control} argument if it is not supplied directly.
@@ -118,7 +140,7 @@ Marschner, I. C. (2014). Combinatorial EM algorithms.
 \emph{Statistics and Computing} 24(6): 921--940.
 }
 \author{
-Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
+Mark W. Donoghoe \email{markdonoghoe@gmail.com}
 }
 \seealso{
 \code{\link{logbin}}
@@ -127,7 +149,10 @@ Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}
 ## Simple example
 x <- c(0.3, 0.2, 0.0, 0.1, 0.2, 0.1, 0.7, 0.2, 1.0, 0.9)
 y <- c(5, 4, 6, 4, 7, 3, 6, 5, 9, 8)
-m1 <- logbin.smooth(cbind(y, 10-y) ~ B(x, knot.range = 0:2), mono = 1, trace = 1)
+system.time(m1 <- logbin.smooth(cbind(y, 10-y) ~ B(x, knot.range = 0:2), mono = 1, trace = 1))
+## Compare with accelerated version
+system.time(m1.acc <- update(m1, accelerate = "squarem"))
+## Isotonic relationship
 m2 <- logbin.smooth(cbind(y, 10-y) ~ Iso(x))
 \donttest{
 plot(m1)

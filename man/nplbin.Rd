@@ -5,12 +5,13 @@ Non-Positive Log-Binomial Regression
 }
 \description{
 Finds the maximum likelihood estimate of a log-link binomial GLM
-using an EM algorithm,
-where each of the coefficients in the linear predictor is restricted 
-to be non-positive.
+using an EM algorithm, where each of the coefficients in the linear 
+predictor is restricted to be non-positive.
 }
 \usage{
-nplbin(y, x, offset, start, control = list())
+nplbin(y, x, offset, start, control = logbin.control(),
+       accelerate = c("em", "squarem", "pem", "qn"),
+       control.accelerate = list(list()))
 }
 \arguments{
   \item{y}{
@@ -30,6 +31,16 @@ nplbin(y, x, offset, start, control = list())
 }
   \item{control}{
 	a \code{\link{logbin.control}} object, which controls the fitting process.
+}
+  \item{accelerate}{
+    a character string that determines the acceleration
+  algorithm to be used, (partially) matching one of \code{"em"} (no acceleration -- the default), 
+  \code{"squarem"}, \code{"pem"} or \code{"qn"}. See \code{\link[turboEM]{turboem}}
+  for further details. Note that \code{"decme"} is not permitted.
+}
+  \item{control.accelerate}{
+	a list of control parameters for the acceleration algorithm. See \code{\link[turboEM]{turboem}}
+	for details of the parameters that apply to each algorithm. If not specified, the defaults are used.
 }
 }
 \details{
@@ -78,7 +89,7 @@ Marschner, I. C. and A. C. Gillett (2012). Relative risk regression: reliable
 and flexible methods for log-binomial models. \emph{Biostatistics} 13(1): 179--192.
 }
 \author{
-Mark W. Donoghoe \email{mark.donoghoe@mq.edu.au}.
+Mark W. Donoghoe \email{markdonoghoe@gmail.com}.
 
 This function is based on code from Marschner and Gillett (2012) written by Alexandra Gillett.
 }

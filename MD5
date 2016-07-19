@@ -1,4 +1,4 @@
-23c6b1b3b7aa811c7397b873356d3c4d *DESCRIPTION
+86f1042a76fdddb870dac5039ef76439 *DESCRIPTION
 788955fb12211370d01917817a922d16 *NAMESPACE
 e37c8337a7e45b450dc64d201fe52858 *NEWS.md
 c461cf6d555ecee65cdaf757665dfd33 *R/B.r
@@ -30,15 +30,15 @@ f7a888cb8157c51bda0ecbdd7488df43 *R/predict.logbin.smooth.r
 4eb692aa74cd5d36a9fb8d298319eded *R/print.summary.logbin.r
 7fb0f2f4ad14e23888b35d98d9b2ffc8 *R/summary.logbin.r
 d3756b715d504b752e2d09c34589d744 *R/vcov.logbin.r
-9229107cad2462d02c170cc9b88d20a8 *README.md
-d31444006349f44fd2d0384d6065d0f0 *inst/CITATION
+e013f6a7d3084f68e8fc359d123a58e2 *README.md
+67d71f7c4f638b66d02c6158650ec105 *inst/CITATION
 a1627a3af4d5826725438f9a7513a531 *man/B.Iso.Rd
 5f8a11ca31db428b00904794263b3bfd *man/anova.logbin.Rd
 9c7a9704ec70377a23ef0e5390fc50a7 *man/confint.logbin.Rd
 bad3fc4fbe61f2cfa95949574b33cc96 *man/contr.isotonic.rev.Rd
 56abcf57ee5714e498b313fce59313c6 *man/conv.test.Rd
 838e6e05c5bab8a5bd12ebf203b4a635 *man/interpret.logbin.smooth.Rd
-ce4ba8b0f4dfff8931a4606502c04625 *man/logbin-package.Rd
+dd3e355b66a69e59c433f2d4d8024309 *man/logbin-package.Rd
 d8bc8a84ca9e01b2ab926fce112a5e95 *man/logbin.Rd
 fd245e19de16c69e6e85b703df9814f2 *man/logbin.control.Rd
 b1109ce497731539a0f8df04e54ef192 *man/logbin.smooth.Rd

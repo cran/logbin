@@ -76,10 +76,15 @@ nplbin <- function(y, x, offset, start, control = logbin.control(),
   
   validparams <- function(p) return(all(p <= 0))
   
+  projfn <- function(p) {
+    pnew <- p
+    pnew[p > 0] <- -.Machine$double.eps
+  }
+  
   conv.user <- function(old,new) return(conv.test(old, new, tol))
   
   res <- turboEM::turboem(par = coefold, fixptfn = fixptfn, objfn = objfn, method = accelerate,
-                          pconstr = validparams, y1 = y1, y2 = y2, n = n, x = x, x.s = x.scale,
+                          pconstr = validparams, project = projfn, y1 = y1, y2 = y2, n = n, x = x, x.s = x.scale,
                           o = offset, nobs = nobs, nvars = nvars, fam = fam, bound.tol = control$bound.tol,
                           control.run = list(convtype = "parameter", tol = control$epsilon,
                                              stoptype = "maxiter", maxiter = control$maxit,
@@ -108,7 +113,7 @@ nplbin <- function(y, x, offset, start, control = logbin.control(),
     
   list(coefficients = coefnew, residuals = residuals, fitted.values = mu / n, rank = nvars,
        family = fam, linear.predictors = eta, deviance = dev.new, aic = aic.model, 
-       aic.c = aic.c.model, null.deviance = nulldev, iter = res$itr[1], weights = weights, 
+       aic.c = aic.c.model, null.deviance = nulldev, iter = res$itr[1], 
        prior.weights = n, df.residual = resdf, df.null = nulldf, y = y, 
        converged = res$convergence[1], boundary = boundary, loglik = -res$value.objfn[1], 
        nn.design = x)   

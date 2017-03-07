@@ -78,11 +78,11 @@ logbin.cem <- function(mt, mf, Y, offset, mono, start, control, accelerate,
   }
     
   fit <- list(coefficients = coefs, residuals = best.model$residuals, 
-              fitted.values = best.model$fitted.values, rank = best.model$rank,
+              fitted.values = best.model$fitted.values,
               linear.predictors = best.model$linear.predictors, deviance = best.model$deviance,
               loglik = best.model$loglik, aic = best.model$aic, aic.c = best.model$aic.c,
               null.deviance = best.model$null.deviance, iter = c(totaliter, best.model$iter),
-              prior.weights = best.model$prior.weights, weights = rep(1, NROW(Y)),
+              prior.weights = best.model$prior.weights,
               df.residual = best.model$df.residual, df.null = best.model$df.null,
               y = best.model$y, x = design, converged = best.model$converged,
               boundary = boundary, np.coefficients = np.coefs,

@@ -10,13 +10,13 @@ logbin <- function (formula, mono = NULL, data, subset, na.action, start = NULL,
   if(missing(data)) data <- environment(formula)
   control <- do.call("logbin.control", control)
     
-  outnames <- c("coefficients", "residuals", "fitted.values", "rank", "family",
+  outnames <- c("coefficients", "residuals", "fitted.values", "effects", "R", "rank", "qr", "family",
                 "linear.predictors", "deviance", "loglik", "aic", "aic.c",
                 "null.deviance", "iter", "prior.weights", "weights",
                 "df.residual", "df.null", "y", "x")
   if (model) outnames <- c(outnames, "model")
   outnames <- c(outnames, "converged", "boundary", "na.action", "call",
-                "formula", "terms", "data", "offset", "control", "method", "xlevels",
+                "formula", "terms", "data", "offset", "control", "method", "contrasts", "xlevels",
                 "xminmax", "np.coefficients", "nn.x")
   fit <- sapply(outnames, function(x) NULL)
   
@@ -77,12 +77,40 @@ logbin <- function (formula, mono = NULL, data, subset, na.action, start = NULL,
     mres <- match(outnames, names(res), 0L)
     fit[names(res)[mres]] <- res[mres]
     fit$family <- family
-    fit$weights <- rep(1, NROW(Y))
+    good <- rep(TRUE, NROW(Y))
+    w <- sqrt((fit$prior.weights[good] * family$mu.eta(fit$linear.predictors)[good]^2) / family$variance(fit$fitted.values)[good])
+    z <- (fit$linear.predictors - (if(is.null(offset)) rep.int(0, NROW(Y)) else offset))[good] + 
+      (fit$y - fit$fitted.values)[good] / family$mu.eta(fit$linear.predictors)[good]
+    qr.tol <- min(1e-07, control$epsilon/1000)
+    qr.val <- qr.default(fit$x * w, qr.tol, LAPACK = FALSE)
+    fit$rank <- qr.val$rank
+    qr.val$qr <- as.matrix(qr.val$qr)
+    nvars <- ncol(fit$x)
+    nr <- min(sum(good), nvars)
+    if (nr < nvars) {
+      Rmat <- diag(nvars)
+      Rmat[1L:nr, 1L:nvars] <- qr.val$qr[1L:nr, 1L:nvars]
+    }
+    else Rmat <- qr.val$qr[1L:nvars, 1L:nvars]
+    Rmat <- as.matrix(Rmat)
+    Rmat[row(Rmat) > col(Rmat)] <- 0
+    fit$qr <- structure(append(qr.val[c("qr", "rank", "qraux", "pivot")], list(tol = qr.tol)), class = "qr")
+    fit$effects <- qr.qty(qr.val, z * w)
+    xnames <- dimnames(fit$x)[[2L]]
+    xxnames <- xnames[fit$qr$pivot]
+    colnames(fit$qr$qr) <- xxnames
+    dimnames(Rmat) <- list(xxnames, xxnames)
+    fit$R <- Rmat
+    names(fit$effects) <- c(xxnames[seq_len(fit$rank)], rep.int("", sum(good) - fit$rank))
+    fit$weights <- rep.int(0, NROW(Y))
+    fit$weights[good] <- w^2
+    names(fit$weights) <- names(fit$y)
     if(model) fit$model <- mf
     fit$na.action <- attr(mf, "na.action")
     fit$terms <- mt
     fit$data <- data
     fit$offset <- offset
+    fit$contrasts <- attr(fit$x, "contrasts")
     fit$xlevels <- .getXlevels(mt, mf)
     fit$xminmax <- .getXminmax(mt, mf)
   }

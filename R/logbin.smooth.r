@@ -79,8 +79,14 @@ logbin.smooth <- function (formula, mono = NULL, data, subset, na.action, offset
       }
     }
     if (!best.model$converged || (!allconv & best.model$boundary))
-      warning(gettextf("%s: algorithm did not converge within %d iterations -- increase 'maxit'.",
-              best.model$method,control$maxit), call. = FALSE)
+      if (identical(accelerate, "em"))
+        warning(gettextf("%s: algorithm did not converge within %d iterations -- increase 'maxit'.",
+                          best.model$method, control$maxit), 
+                call. = FALSE)
+      else
+        warning(gettextf("%s(%s): algorithm did not converge within %d iterations -- increase 'maxit' or try with 'accelerate = \"em\"'.",
+                          best.model$method, accelerate, control$maxit),
+                call. = FALSE)
     if(!allconv) allconvk <- FALSE
     reparam.call <- call("logbin.smooth.reparameterise", coefficients = best.model$coefficients,
                           interpret = gp, type = method, allref = allref, knots = best.knots,
@@ -124,8 +130,8 @@ logbin.smooth <- function (formula, mono = NULL, data, subset, na.action, offset
   aic.c <- bestk.model$aic - 2 * vardiff + 2 * nvars * (nvars + 1) / (NROW(bestk.model$y) - nvars - 1)
   
   fit <- list(coefficients = reparam$coefs, residuals = bestk.model$residuals,
-              fitted.values = bestk.model$fitted.values,
-              rank = nvars, family = family,
+              fitted.values = bestk.model$fitted.values, effects = bestk.model$effects,
+              R = bestk.model$R, rank = bestk.model$rank, qr = bestk.model$qr, family = family,
               linear.predictors = bestk.model$linear.predictors,
               deviance = bestk.model$deviance, loglik = bestk.model$loglik,
               aic = bestk.model$aic - 2*vardiff, aic.c = aic.c,
@@ -137,10 +143,10 @@ logbin.smooth <- function (formula, mono = NULL, data, subset, na.action, offset
   if(model.logbin) fit$model.logbin <- bestk.model
   xminmax.smooth <- bestk.model$xminmax
   xminmax.smooth[reparam$smoothnames] <- NULL
-  fit2 <- list(converged = bestk.model$converged, boundary = bestk.model$boundary,
+  fit2 <- list(converged = allconvk, boundary = bestk.model$boundary,
                na.action = attr(reparam$mf, "na.action"), call = call, formula = formula, 
                full.formula = gp$full.formula, terms = mt, terms.full = reparam$mt, 
-               data = data, offset = os, control = control, method = method,
+               data = data, offset = os, control = control, method = method, contrasts = bestk.model$contrasts,
                xlevels = bestk.model$xlevels, xminmax = xminmax.smooth, knots = bestk.knots)
 
   fit <- c(fit, fit2)            

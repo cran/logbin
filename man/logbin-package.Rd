@@ -12,8 +12,7 @@ algorithms with more stable convergence properties than standard methods.
 \tabular{ll}{
 Package: \tab logbin\cr
 Type: \tab Package\cr
-Version: \tab 2.0.3\cr
-Date: \tab 2017-05-03\cr
+Version: \tab 2.0.4\cr
 License: \tab GPL (>= 2)\cr
 }
 This package provides methods to fit generalised linear models (GLMs) and generalised additive
@@ -59,6 +58,10 @@ Maintainer: Mark W. Donoghoe \email{markdonoghoe@gmail.com}
 Donoghoe, M. W. and I. C. Marschner (2015). Flexible regression models for rate 
 differences, risk differences and relative risks. \emph{International Journal of 
 Biostatistics} 11(1): 91--108.
+
+Donoghoe, M. W. and I. C. Marschner (2018). logbin: An R package for relative risk
+regression using the log-binomial model. \emph{Journal of Statistical Software} 
+86(9): 1--22.
 
 Marschner, I. C. (2014). Combinatorial EM algorithms.
 \emph{Statistics and Computing} 24(6): 921--940.

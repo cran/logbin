@@ -55,18 +55,18 @@ logbin <- function (formula, mono = NULL, data, subset, na.action, start = NULL,
     if (any(attr(mt, "order") > 1)) stop("models with interactions are not supported by logbin")
     if (attr(mt, "response") == 0) stop("missing response")
     
-    offset <- as.vector(model.offset(mf))
-    if(!is.null(offset)) {
-      if(length(offset) != NROW(Y))
-        stop(gettextf("number of offsets is %d should equal %d (number of observations)",
-                      length(offset), NROW(Y)), domain = NA)
-    }
-    
     Y <- model.response(mf, "any")
     if(length(dim(Y)) == 1L) {
       nm <- rownames(Y)
       dim(Y) <- NULL
       if(!is.null(nm)) names(Y) <- nm
+    }
+    
+    offset <- as.vector(model.offset(mf))
+    if(!is.null(offset)) {
+      if(length(offset) != NROW(Y))
+        stop(gettextf("number of offsets is %d should equal %d (number of observations)",
+                      length(offset), NROW(Y)), domain = NA)
     }
   
     logbin.method <- paste("logbin", method, sep = ".")
@@ -74,7 +74,7 @@ logbin <- function (formula, mono = NULL, data, subset, na.action, start = NULL,
                         start = start, control = control)
     if (method %in% c("cem", "em")) logbin.args$accelerate <- accelerate
     logbin.args <- c(logbin.args, list(control.method = control.method, warn = warn))
-    res <- do.call(logbin.method, logbin.args)    
+    res <- do.call(logbin.method, logbin.args)
     mres <- match(outnames, names(res), 0L)
     fit[names(res)[mres]] <- res[mres]
     fit$family <- family

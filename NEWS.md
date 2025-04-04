@@ -1,6 +1,15 @@
+# logbin 2.0.6
+
+* Replace `vcov` calculation in `summary.logbin` to replicate the version in `summary.glm`.
+* Implement tests using `testthat`.
+* Clarify the copyright status of functions based on base R.
+* (Minor) Removed unused `contr.isototonic.rev` function. Also no longer exporting `interpret.logbin.smooth`.
+* (Minor) Suppress startup messages when `turboEM::turboem` is called for the first time.
+* (Minor) Update `logbin-package` Rd file to remove CRAN `NOTE`.
+
 # logbin 2.0.5
 
-* Fixed reparameterisation for factor variables in method = "cem" (@jakobschoepe, #3)
+* Fixed reparameterisation for factor variables in `method = "cem"` (@jakobschoepe, #3)
 * Implemented a more efficient approach to parameter expansion (using the transformation matrix).
 * When using the parameter expansion approach, check convergence of the reduced parameter vector. As an indirect result, the `conv.test` function is no longer exported.
 * Fixed error in `logbin` if offset provided
@@ -30,7 +39,7 @@
 
 * `method` option added: fit using glm, glm2, adaptive barrier, CEM or single EM algorithm with overparameterised model
 * `accelerate` option added: use `turboEM` methods to speed up convergence
-* (Minor change) Corrected the definition of `boundary` 
+* (Minor) Corrected the definition of `boundary` 
 
 # logbin 1.2
 
